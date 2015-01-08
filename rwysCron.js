@@ -4,14 +4,14 @@ try {
     var Spooky = require('../lib/spooky');
 }
 var $ = require('jquery');
-var portals = require('./config/portals.js');
+var portals = require('./config/portals');
 var mongoClient = require('mongodb').MongoClient;
 var spookyConfig = 
   { child: { transport: 'http' },
     casper: { logLevel: 'debug',
             verbose: true, 
-            clientScripts: [ 'assets/js/jquery2.1.3.js',
-                'assets/js/pageScrape.js'
+            clientScripts: [ 'js/jquery2.1.3.js',
+                'js/pageScrape.js'
               ],
             pageSettings: {
                 javascriptEnabled: true,
@@ -33,7 +33,7 @@ var spookyFunction = function (err) {
         throw e;
     }
     //spooky.start(portals[1].portal.baseUrl + portals[1].portal.storePath);
-   console.log(portals[0].portal.baseUrl); spooky.start('http://localhost:3000'+portals[0].portal.storePath);
+    spooky.start(portals[0].portal.baseurl+portals[0].portal.storePath);
     spooky.then( [{port:portals[0]},
         function(){ 
             this.emit('processedMerchant',
@@ -82,7 +82,7 @@ spooky.on('storeName', function (name) {
 });
 
 spooky.on('processedMerchant', function (result) {
-    mongoClient.connect('mongodb://127.0.0.1:27017/merchant',
+    mongoClient.connect('mongodb://127.0.0.1:27107/merchant',
         function(err, db) {
             if(err) throw err;
             var collection = db.collection('merchant');
