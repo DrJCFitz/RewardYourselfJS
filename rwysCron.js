@@ -10,8 +10,8 @@ var spookyConfig =
   { child: { transport: 'http' },
     casper: { logLevel: 'debug',
             verbose: true, 
-            clientScripts: [ 'js/jquery2.1.3.js',
-                'js/pageScrape.js'
+            clientScripts: [ 'assets/js/jquery2.1.3.js',
+                'assets/js/pageScrape.js'
               ],
             pageSettings: {
                 javascriptEnabled: true,
@@ -33,7 +33,7 @@ var spookyFunction = function (err) {
         throw e;
     }
     //spooky.start(portals[1].portal.baseUrl + portals[1].portal.storePath);
-    spooky.start(portals[0].portal.baseurl+portals[0].portal.storePath);
+    spooky.start('http://localhost:3000/ebates');
     spooky.then( [{port:portals[0]},
         function(){ 
             this.emit('processedMerchant',
@@ -82,11 +82,13 @@ spooky.on('storeName', function (name) {
 });
 
 spooky.on('processedMerchant', function (result) {
-    mongoClient.connect('mongodb://127.0.0.1:27107/merchant',
+    mongoClient.connect('mongodb://127.0.0.1:27017/merchant',
         function(err, db) {
             if(err) throw err;
             var collection = db.collection('merchant');
-            collection.insert(result, function(err, docs){
+            collection.insert(JSON.parse(result), function(err, docs){
+                if(err) throw err;
+                console.log('insert complete');
                 db.close();
             });
         });
