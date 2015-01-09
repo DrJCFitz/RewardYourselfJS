@@ -1,0 +1,54 @@
+<h2 id='title'>Welcome to Ember.js</h2>
+<div id="stores" data-role="page">
+        <div data-role="header">
+    <!-- panels too much upkeep; tabs better suit purpose -->
+                <!-- <a href="#leftmenu-stores" data-role="button" data-inline="true"
+                        data-icon="bars">
+                        Menu 
+                </a> -->
+                <h1>Stores</h1>
+                <div data-role="navbar" data-grid="c">
+                    <ul>
+                        <li><a href="#stores" class="ui-btn-active">Stores</a></li>
+                        <li><a href="#trends">Trends</a></li>
+                        <li><a href="#portals">Portals</a></li>
+                        <li><a href="#products">Products</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+        </div>
+        <div role="main" class="ui-content">
+                <ul id="storeList" data-role="listview" data-filter="true"
+                        data-filter-placeholder="Search stores..." data-inset="true"
+                        data-filter-reveal="false">
+                                    <!-- loop through each merchant in array -->
+                <!--
+                                <c:forEach var="merchant" items="${orderedMerchant}">
+                                        <li>
+                                         <div data-role="collapsible" data-inset="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" 
+                                         class="rwys-store" mkey="<c:out value="${merchant.mkey}"/>">
+                                                <h4><c:out value="${merchant.name}"/></h4>
+                                         </div>
+                                        </li>
+                                </c:forEach> -->
+                        </ul>
+                </div>
+            <div data-role="footer">
+            </div><!-- /footer -->
+<!--            <div data-role="panel" id="leftmenu-stores">
+                    <div class="panel-content">
+                            <a href="#leftmenu-stores" rel-data="close" class='ui-btn ui-icon-delete ui-btn-icon-right'>Close</a>
+                        <a href="#trends" class='ui-btn ui-icon-arrow-u-r ui-btn-icon-left'>Trends</a>
+                        <p>Track reward patterns<br/>Determine the best time to buy</p> -->
+                        <!-- <a href="#stores" class='ui-btn ui-icon-shop ui-btn-icon-left'>Stores</a>
+                        <p>Find current offers by store</p> -->
+                                <!-- <a href="#products" class='ui-btn ui-icon-tag ui-btn-icon-left'>Products</a>
+                            <p>Search and track product pricing</p> -->
+<!--                        <a href="#portals" class='ui-btn ui-icon-home ui-btn-icon-left'>Portals</a>
+                            <p>Browse or search offers by shopping portal</p>
+                        </div> 
+                </div> -->
+        </div><!-- end stores page -->
+
+
+
+{{outlet}}
