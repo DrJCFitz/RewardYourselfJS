@@ -1,5 +1,5 @@
 {
-  "name": "RewardYour$elf",
+  "name": "RewardYourSelf",
   "version": "0.0.0",
   "description": "web application to track and display discounts from multiple portals",
   "main": "app.js",
@@ -10,7 +10,7 @@
     "jade": "*",
     "nib" : "*",
     "mongodb" : "*",
-    "monk" : "*"
+    "mongoose" : "*"
   },
   "devDependencies": {},
   "scripts": {
