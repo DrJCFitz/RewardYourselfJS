@@ -29,7 +29,7 @@ $(document).ready( function() {
 							rewardPrefix = (d.reward.rewardUnit==='$') ? '$' : '';
 							rewardSuffix = (d.reward.rewardUnit==='none') ? '' : ' '+d.reward.rewardUnit;
 							equivRewardVal = (d.reward.rewardUnit ==='$' || d.reward.rewardRate ==='%') ? null : equivPercent*d.reward.rewardValue;
-							merchants.push('<div class=\'rwys-merch\'><a href=\'' + d.storeLink + '\'>'+
+							merchants.push('<div class=\'RewardYourself-merch\'><a href=\'' + d.storeLink + '\'>'+
 									' <img src=\'static/img/' + key + '.png\' />' +
 									' <p>' + rewardPrefix + d.reward.rewardValue + rewardSuffix + 
 									d.reward.rewardRate + '</p></a>'+
@@ -56,7 +56,7 @@ $(document).ready( function() {
 							rewardPrefix = (d.reward.rewardUnit==='$') ? '$' : '';
 							rewardSuffix = (d.reward.rewardUnit==='none') ? '' : ' '+d.reward.rewardUnit;
 							equivRewardVal = (d.reward.rewardUnit ==='$' || d.reward.rewardRate ==='%') ? null : equivPercent*d.reward.rewardValue;
-							merchants.push('<div mkey=\'' + d.mkey + '\'><a href=\'' + d.storeLink + '\'><span class=\'rwys-portal\'>' +
+							merchants.push('<div mkey=\'' + d.mkey + '\'><a href=\'' + d.storeLink + '\'><span class=\'RewardYourself-portal\'>' +
 									d.name + ': ' + rewardPrefix + d.reward.rewardValue + rewardSuffix + d.reward.rewardRate + 
 									'</span></a>'+
 									((equivRewardVal == null) ? '' : '<p class="equiv">Equivalent Value: ' + equivRewardVal + '%</p>') + 
