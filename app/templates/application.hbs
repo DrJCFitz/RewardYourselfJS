@@ -1,35 +1,3 @@
-<h2 id='title'>Welcome to Ember.js</h2>
-<div id="stores" data-role="page">
-        <div data-role="header">
-    <!-- panels too much upkeep; tabs better suit purpose -->
-                <!-- <a href="#leftmenu-stores" data-role="button" data-inline="true"
-                        data-icon="bars">
-                        Menu 
-                </a> -->
-                <h1>{{model}}</h1>
-                <div data-role="navbar" data-grid="a">
-                    <ul>
-                        <li>{{#link-to "stores"}}Stores{{/link-to}}</li>
-                        <li>{{#link-to "products"}}Products{{/link-to}}</li>
-                    </ul>
-                </div><!-- /navbar -->
-        </div>
+{{ partial 'partials/header' }}
     
-            {{outlet}}
-            <div data-role="footer">
-            </div><!-- /footer -->
-<!--            <div data-role="panel" id="leftmenu-stores">
-                    <div class="panel-content">
-                            <a href="#leftmenu-stores" rel-data="close" class='ui-btn ui-icon-delete ui-btn-icon-right'>Close</a>
-                        <a href="#trends" class='ui-btn ui-icon-arrow-u-r ui-btn-icon-left'>Trends</a>
-                        <p>Track reward patterns<br/>Determine the best time to buy</p> -->
-                        <!-- <a href="#stores" class='ui-btn ui-icon-shop ui-btn-icon-left'>Stores</a>
-                        <p>Find current offers by store</p> -->
-                                <!-- <a href="#products" class='ui-btn ui-icon-tag ui-btn-icon-left'>Products</a>
-                            <p>Search and track product pricing</p> -->
-<!--                        <a href="#portals" class='ui-btn ui-icon-home ui-btn-icon-left'>Portals</a>
-                            <p>Browse or search offers by shopping portal</p>
-                        </div> 
-                </div> -->
-        </div><!-- end stores page -->
-
+{{outlet}}
