@@ -1,2 +1,11 @@
-offer
+<span>Listing of current discounts by portal:</span>
+<ul class='offer'>
+{{#each offer in model}}
+    <li>{{offer.portalName}}</li>
+{{/each}}
+</ul>
+
+<div class='trends'>
+    <p>Refactor D3.js plugin to show history and trends</p>
+</div>
 {{outlet}}

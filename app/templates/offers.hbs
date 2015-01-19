@@ -1,7 +1,7 @@
-<ul class='list-group'>
+<div class='list-group'>
     {{#each store in model}}
-        <li class='list-group-item'>{{store.name}}</li>
+        {{#link-to 'offers.offer' store.id classNames='list-group-item'}}{{store.name}}{{/link-to}}
     {{/each}}
-</ul>
+</div>
 
 {{outlet}}

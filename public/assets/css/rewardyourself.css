@@ -1,4 +1,13 @@
 @CHARSET "ISO-8859-1";
+div.list-group {
+    width: 20%;
+    display: inline-block;
+}
+ul.offer {
+    display: inline-block;
+    vertical-align: top;
+}
+
 .axis path,.axis line {
 	fill: none;
 	stroke: black;
