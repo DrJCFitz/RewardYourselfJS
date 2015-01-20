@@ -1,11 +1,18 @@
-<span>Listing of current discounts by portal:</span>
-<ul class='offer'>
-{{#each offer in model}}
-    <li>{{offer.portalName}}</li>
-{{/each}}
-</ul>
+<div class='offer'>
+    <span>Listing of current discounts by portal:</span>
+    <ul>
+    {{#each offer in model}}
+        <li>
+            <a href="{{ offer.link }}">
+                <img src="assets/img/ebates.png">
+            </a>
+            {{offer.portalName}}, {{offer.reward.value}}{{offer.reward.unit}}
+        </li>
+    {{/each}}
+    </ul>
 
-<div class='trends'>
-    <p>Refactor D3.js plugin to show history and trends</p>
+    <div class='trends'>
+        <p>Refactor D3.js plugin to show history and trends</p>
+    </div>
 </div>
 {{outlet}}

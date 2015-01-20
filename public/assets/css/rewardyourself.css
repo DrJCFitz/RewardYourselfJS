@@ -3,7 +3,7 @@ div.list-group {
     width: 20%;
     display: inline-block;
 }
-ul.offer {
+div.offer {
     display: inline-block;
     vertical-align: top;
 }

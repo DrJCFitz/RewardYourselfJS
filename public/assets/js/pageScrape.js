@@ -80,8 +80,10 @@
             this.unit = unit;
             this.rate = rate;
             this.limit = limit;
+            this.id = self.variables.portal.key;
             this.equivalentPercentage = self.variables.merchant.reward.equivalentPercentage;
             this.currency = self.variables.merchant.reward.currency;
+            return this;
         }
         
         function merchantNameToKey( merchantName ) {

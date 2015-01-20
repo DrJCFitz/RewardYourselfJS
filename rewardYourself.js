@@ -25,6 +25,10 @@ app.get('/', function(req, res){
     res.sendFile(__dirname+'/dist/index.html');
     //res.sendFile(__dirname+'/views/rwys.html');
 });
+app.get('/ebates', function(req, res){
+    res.sendFile(__dirname+'/views/ebates_shopping.html');
+    //res.sendFile(__dirname+'/views/rwys.html');
+});
 
 app.get('/stores', function(req, res) {
     if ( Object.keys(req.query).length === 0 ) {
