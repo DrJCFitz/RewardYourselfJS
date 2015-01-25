@@ -1,4 +1,7 @@
 @CHARSET "ISO-8859-1";
+a.store-link:hover {
+    cursor: pointer;
+}
 div.list-group {
     width: 20%;
     display: inline-block;

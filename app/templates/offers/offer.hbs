@@ -3,10 +3,16 @@
     <ul>
     {{#each offer in model}}
         <li>
-            <a href="{{ offer.link }}">
-                <img src="assets/img/ebates.png">
+            <a {{bind-attr class=":store-link"}} {{action "followLink" offer.link}}>
+                <img src="assets/img/{{unbound offer.portalKey}}.png">
             </a>
-            {{offer.portalName}}, {{offer.reward.value}}{{offer.reward.unit}}
+            <ul>
+                <li>{{offer.portalName}}: {{offer.reward.value}}{{offer.reward.unit}}
+                </li>
+                <li>
+                    Equivalent Value:{{offer.reward.equivalentRewardValue}}
+                </li>
+            </ul>
         </li>
     {{/each}}
     </ul>
