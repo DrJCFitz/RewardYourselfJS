@@ -9,7 +9,8 @@ var spookyConfig =
   { child: { transport: 'http' },
     casper: { logLevel: 'debug',
             verbose: true, 
-            clientScripts: [ 'public/assets/js/jquery2.1.3.js',
+            clientScripts: [ './config/portal-keys.js',
+                'public/assets/js/jquery2.1.3.js',
                 'public/assets/js/pageScrape.js'
               ],
             pageSettings: {
@@ -38,7 +39,8 @@ var spookyFunction = function (err) {
             this.emit('processedMerchant',
                 this.evaluate(function(pageMerchant){
                     var stores = $(pageMerchant.portal.rootElement)
-                    .pageScrape({ portal: pageMerchant.portal,
+                    .pageScrape({ merchantKeys: keyTrans,
+                                 portal: pageMerchant.portal,
                                           merchant: pageMerchant.pageData });
                     //var processedStores =  stores.process();
                     //return $(pageMerchant.portal.rootElement +' '+pageMerchant.pageData.name.element).eq(0).text();

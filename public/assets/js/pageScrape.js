@@ -3,10 +3,8 @@
     function PageScrape( element, options ) {
         var self = this;
         var $element = $(element);
-        var keyTrans = {"wsjwineclub": "wsjwine","spreadshirtdesigner": "spreadshirt","speedousa": "speedo","spanxbysarablakely": "spanx","spafinderwellness365": "spafinderwellness","sonystore": "sony","smashbox": "smashboxcosmetics","skyo": "skyotextbooks","samsungelectronicsamerica": "samsung","sallybeauty": "sallybeautysupply","saksfifthavenueoff5th": "saksofffifth","saks": "saksfifthavenue","rosettastonelanguagesoftware": "rosettastone","rodalestore": "rodales","rakutenshoppingformerlybuy": "rakuten","quickbooks": "quickbooksonline","performancebike": "performancebicycle","ps": "psfromaeropostale","overland": "overlandsheepskinco","ojon": "ojonhaircare","northerntoolequipment": "northerntool","nikestore": "nike","nfl": "nflshop","nationalgeographicstore": "nationalgeographic","nascarstore": "nascar","midesignmichaelscustominvites": "michaelscustominvitations","luckybrand": "luckybrandjeans","lenovothinkpad": "lenovo","legoshopathome": "lego","labseries": "labseriesskincareformen","labseriesformen": "labseriesskincareformen","kiplingusa": "kipling","kielssince1851": "kiels","jaredthegalleriaofjewelry": "jared","istockphoto": "istock","irvsluggage": "irvsluggagewarehouse","ipage": "ipagewebhosting","intuitquickbooksonline": "quickbooksonline","intuitquickbooksdesktop": "quickbooksdesktop","highlights": "highlightsforchildren","hrblockathome": "hrblock","gocardusasmartdestinations": "gocardusa","glasses": "glassesusa","gevaliakaffe": "gevalia","gevaliacoffee": "gevalia","folica": "folicabeautysupply","effyjewelry": "effyjewelers","discoverystore": "discoverychannelstore","dancingdeerbakingco": "dancingdeerbakingcompany","cymaxstores": "cymax","cusp": "cuspbyneimanmarcus","champion": "championusa","carolwrightsgifts": "carolwrightgifts","boden": "bodenus","bodenusa": "bodenus","blissworld": "bliss","bjs": "bjswholesaleclub","bjswholesale": "bjswholesaleclub","baseballrampagesoftballrampage": "baseballrampage","americaneagle": "americaneagleoutfitters","afflictionclothing": "affliction","aerieforamericaneagle": "aerie","crowneplaza": "crowneplazahotelsresorts","discounttireamericastire": "discounttire","drleonards": "drleonardshealthcare","duncraft": "duncraftwildbirdsuperstore","duncraftbirdfeeders": "duncraftwildbirdsuperstore","elsevierstore": "elsevier","estelauder": "esteelauder","evesaddiction": "evesaddictionjewelry","fanniemaycandies": "fanniemay","holidayinnexpresshotels": "holidayinnexpress","holidayinn": "holidayinnhotelsresorts","hotelindigo": "hotelindigohotels","intercontinental": "intercontinentalhotelsresorts","adagio": "adagioteas","ahnu": "ahnufootwear","alibris": "alibrisbooksmusicmovies","bates": "batesfootwear","bowflexshop": "bowflex","budget": "budgetrentacar","budgettruck": "budgettruckrental","carbonite": "carbonitebackup","chefs": "chefscatalog","chegg": "cheggstudy","clarionhotel": "clarionhotels","candlewoodsuites": "candlewoodsuiteshotels","cookieskids": "cookiesthekidsdepartmentstore","dellhomesystems": "dellhome","foodsavervacuumsealingsystem": "foodsaver","ftdflowersgifts": "ftd","hphomehomeofficestore": "hphomeofficestore","lancme": "lancome","levi": "levis","lifelockidentitytheftprotection": "lifelock","lumberliquidator": "lumberliquidators","melissaanddoug": "melissadoug","microtelinnsuitesbywyndham": "microtelinnsuites","mlbshop": "mlb","nascarsuperstore": "nascar","nbcstore": "nbcuniversalstore","nortonfromsymantec": "nortonbysymantec","oneidaltd": "oneida","panasonicideasforlife": "panasonic","parkplaza": "parkplazahotelsresorts","paylesssource": "paylessshoesource","pipingrock": "pipingrockhealthproducts","proactivsolution": "proactiv","radisson": "radissonhotelsresorts","rakutenshopping": "rakuten","ruum": "ruumamericankidswear","sandalsallinclusiveresorts": "sandalsresorts","staybridgesuiteshotels": "staybridgesuites","sundancecatalog": "sundance","thenewyorktimesstore": "thenewyorktimes","wjswinediscoveryclub": "wsjwine","wyndhamhotelgroup": "wyndhamhotelsresorts","yvesrocherus": "yvesrocherusa","yvessaintlaurent": "yvessaintlaurentbeauty"};
-        
         var defaults = {
-                merchantKeys: keyTrans,
+                merchantKeys: null,
                 debugMode: true
             };
 
@@ -80,15 +78,16 @@
             this.unit = unit;
             this.rate = rate;
             this.limit = limit;
-            this.id = self.variables.portal.key;
-            this.equivalentPercentage = self.variables.merchant.reward.equivalentPercentage;
-            this.currency = self.variables.merchant.reward.currency;
+            // use the id for the timestamp in seconds
+            this.id = self.variables.portal.key+parseInt(new Date().getTime()/1000);
+            this.equivalentPercentage = self.variables.portal.equivalentPercentage;
+            this.currency = self.variables.portal.currency;
             return this;
         }
         
         function merchantNameToKey( merchantName ) {
             // strip any spaces or special characters from name and convert to lowercase
-            var keyName = merchantName.replace(new RegExp('\\W+'),'').replace(new RegExp('\\s+'),'').toLowerCase();
+            var keyName = merchantName.replace(/\W+/g,'').replace(/\s+/g,'').toLowerCase();
             if (self.options.merchantKeys[keyName] === undefined ) {
                 return keyName;
             } else {
