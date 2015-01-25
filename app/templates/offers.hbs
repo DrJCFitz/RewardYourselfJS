@@ -1,7 +1,17 @@
-<div class='list-group'>
-    {{#each store in model}}
-        {{#link-to 'offers.offer' store.id classNames='list-group-item'}}{{store.name}}{{/link-to}}
-    {{/each}}
-</div>
+<h2>Listing of current discounts by portal:</h2>
+<table id="offerTable" class="display" width="100%">
+<thead>
+    <tr>
+        <th>Portal</th>
+        <th>Reward</th>
+        <th>Equivalent Percentage</th>
+    </tr>
+</thead>
+<tbody>
+{{#each offer in model}}
+    {{view 'offers/offer' contentBinding='offer'}}
+{{/each}}
+</tbody>
+</table>
 
-{{outlet}}
+{{view 'offers/trends'}}

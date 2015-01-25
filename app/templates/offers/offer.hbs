@@ -1,24 +1,9 @@
-<div class='offer'>
-    <span>Listing of current discounts by portal:</span>
-    <ul>
-    {{#each offer in model}}
-        <li>
-            <a {{bind-attr class=":store-link"}} {{action "followLink" offer.link}}>
-                <img src="assets/img/{{unbound offer.portalKey}}.png">
-            </a>
-            <ul>
-                <li>{{offer.portalName}}: {{offer.reward.value}}{{offer.reward.unit}}
-                </li>
-                <li>
-                    Equivalent Value:{{offer.reward.equivalentRewardValue}}
-                </li>
-            </ul>
-        </li>
-    {{/each}}
-    </ul>
-
-    <div class='trends'>
-        <p>Refactor D3.js plugin to show history and trends</p>
-    </div>
-</div>
-{{outlet}}
+<td>
+    <img class="portal" src="img/{{unbound offer.portalKey}}.png">
+</td>
+<td>
+    {{offer.reward.rewardValueAndRate}}
+</td>
+<td>
+    {{offer.reward.equivalentRewardValue}}
+</td>

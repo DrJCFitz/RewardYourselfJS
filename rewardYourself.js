@@ -8,7 +8,7 @@ var portnumber = 3000;
 
 var app = express();
 // Serve static files
-app.use('/assets',express.static(__dirname+'/dist/assets'));
+app.use('/',express.static(__dirname+'/dist/assets'));
 var server = new mongodb.Server("127.0.0.1", 27017, {});
 var db = new mongodb.Db('merchant', server, {w: 1});
 

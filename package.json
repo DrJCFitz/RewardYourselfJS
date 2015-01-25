@@ -33,5 +33,8 @@
     "spooky": "~0.2.5",
     "mongodb": "*",
     "monk": "*"
+  },
+  "dependencies": {
+    "bootstrap-list-filter": "~0.1.7"
   }
 }
