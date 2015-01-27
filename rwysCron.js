@@ -32,8 +32,8 @@ var spookyFunction = function (err) {
         e.details = err;
         throw e;
     }
-    //spooky.start(portals[1].portal.baseUrl + portals[1].portal.storePath);
-    spooky.start('http://localhost:3000/ebates');
+    spooky.start(portals[0].portal.baseUrl + portals[0].portal.storePath);
+    //spooky.start('http://localhost:3000/ebates');
     spooky.then( [{port:portals[0]},
         function(){ 
             this.emit('processedMerchant',
@@ -84,15 +84,20 @@ spooky.on('storeName', function (name) {
 });
 
 spooky.on('processedMerchant', function (result) {
-    console.log('processedMerchant: '+result);
+    var merchants = JSON.parse(result);
+    console.log(merchants.length + ' merchants returned');
+    var portalKey = merchants[0].portalKey;
     mongoClient.connect('mongodb://127.0.0.1:27017/merchant',
         function(err, db) {
             if(err) throw err;
             var collection = db.collection('merchant');
-            collection.insert(JSON.parse(result), function(err, docs){
+            collection.update({portalKey: portalKey},{$set:{enabled:false}},{multi:true}, function(err, result){
                 if(err) throw err;
-                console.log('insert complete');
-                db.close();
+                collection.insert(merchants, function(err, docs){
+                    if(err) throw err;
+                    console.log('insert complete');
+                    db.close();
+                });
             });
         });
   }
