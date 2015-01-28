@@ -6,9 +6,9 @@ try {
 var portals = require('./config/portals');
 var mongoClient = require('mongodb').MongoClient;
 var spookyConfig = 
-  { child: { transport: 'http' },
+  { child: { transport: 'http', 'ssl-protocol':'any' },
     casper: { logLevel: 'debug',
-            verbose: true, 
+            verbose: true,
             clientScripts: [ './config/portal-keys.js',
                 'public/assets/js/jquery2.1.3.js',
                 'public/assets/js/pageScrape.js'
@@ -32,9 +32,9 @@ var spookyFunction = function (err) {
         e.details = err;
         throw e;
     }
-    spooky.start(portals[0].portal.baseUrl + portals[0].portal.storePath);
+    spooky.start(portals[1].portal.baseUrl + portals[1].portal.storePath);
     //spooky.start('http://localhost:3000/ebates');
-    spooky.then( [{port:portals[0]},
+    spooky.then( [{port:portals[1]},
         function(){ 
             this.emit('processedMerchant',
                 this.evaluate(function(pageMerchant){
@@ -49,10 +49,10 @@ var spookyFunction = function (err) {
                 {pageMerchant: port})
             );
             
-           /* this.emit('storeName',
+           /*this.emit('storeName',
                 this.evaluate(function(pageMerchant){
                     //return JSON.stringify(pageMerchant.pageData);
-                //return $('tr.store td.storeName a').text();
+                return $(pageMerchant.portal.rootElement + ' ' + pageMerchant.pageData.name.element).eq(0).text();
                 }, {pageMerchant: port}) 
             );*/
         }]);
