@@ -26,9 +26,14 @@ app.get('/', function(req, res){
     //res.sendFile(__dirname+'/views/rwys.html');
 });
 
+app.get('/united', function(req, res){
+    res.sendFile(__dirname+'/views/ua_shopping.html');
+    //res.sendFile(__dirname+'/views/rwys.html');
+});
+
 app.get('/stores', function(req, res) {
     if ( Object.keys(req.query).length === 0 ) {
-        collection.aggregate([{$group:{_id:'$key','name':{$addToSet:'$name'}}}],function(err, foundMerchant){
+        collection.aggregate([{$sort:{key:-1}},{$group:{_id:'$key','name':{$addToSet:'$name'}}}],function(err, foundMerchant){
             res.send({stores:foundMerchant});
         });
     } else {
