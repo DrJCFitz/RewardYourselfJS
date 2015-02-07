@@ -1,8 +1,0 @@
-<div class="form-group">
-    <input id="searchStoresInput" class="form-control" type="search" placeholder="Search Stores..."/>
-</div>
-<div id="searchStoresList" class="list-group">
-    {{#each store in model}}
-        {{#link-to 'online.offer' store.id classNames='list-group-item'}}<span>{{store.name}}</span>{{/link-to}}
-    {{/each}}
-</div>

@@ -16,19 +16,7 @@ var app = new EmberApp();
 // modules that you would like to import into your application
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
+app.import('bower_components/ember-cli-list-view/list-view.js');
 app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
 app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
-app.import('bower_components/DataTables/media/js/jquery.dataTables.min.js',{ destDir: 'assets/js'});
-app.import('bower_components/DataTables/media/css/jquery.dataTables.min.css',{ destDir: 'assets/css' });
-app.import('vendor/bootstrap-list-filter/bootstrap-list-filter.min.js',{ destDir: 'assets/js' });
-/*app.import('bower_components/fontawesome/css/font-awesome.min.css');
-app.import('bower_components/fontawesome/fonts/fontawesome-webfont.woff',{
-   destDir: 'assets/fonts'
-});
-app.import('bower_components/fontawesome/fonts/fontawesome-webfont.woff2',{
-   destDir: 'assets/fonts'
-});
-app.import('bower_components/fontawesome/fonts/fontawesome-webfont.ttf',{
-   destDir: 'assets/fonts'
-});*/
 module.exports = app.toTree();

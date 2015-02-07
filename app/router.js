@@ -9,6 +9,9 @@ Router.map(function() {
   this.resource('online', function(){
     this.route('offer', {path:'/:key'});
   });
+  this.resource('giftcard', function(){
+    this.route('offer', {path:'/:key'});
+  });
 });
 
 export default Router;
