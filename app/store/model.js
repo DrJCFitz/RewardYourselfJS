@@ -5,7 +5,7 @@ var Store = DS.Model.extend({
   portalName: DS.attr('string'),
   portalKey: DS.attr('string'),
   link: DS.attr('string'),
-  reward: DS.belongsTo('reward')
+  reward: DS.belongsTo('reward', {embedded: 'always'})
 });
 
 Store.reopenClass({
