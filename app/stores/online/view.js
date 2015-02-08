@@ -1,15 +1,9 @@
 import Ember from 'ember';
 
-export default Ember.View.extend({
-    templateName: 'stores/online',
-    tagName: 'form',
-    attributeBindings: ['role'],
-    role: "form",
-    classNames: ['storeList'],
-    didInsertElement: function(){
-        this._super();
-        this.$('#searchStoresList')
-            .btsListFilter('#searchStoresInput', 
-                           {itemChild: 'span'});
-    }
+export default Ember.ListView.extend({
+  height: 500,
+  rowHeight: 30,
+  itemViewClass: Ember.ListItemView.extend({
+    templateName: "stores/online"
+  })
 });
