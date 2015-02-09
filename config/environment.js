@@ -3,7 +3,8 @@
 module.exports = function(environment) {
   var ENV = {
     contentSecurityPolicy: {
-        'connect-src': 'localhost:3000'
+        'connect-src': 'localhost:3000',
+        'style-src': "'self' 'unsafe-inline'"
     },
     modulePrefix: 'RewardYourself',
     environment: environment,

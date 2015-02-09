@@ -15,7 +15,7 @@
     "qunit": "~1.17.1",
     "bootstrap": "*",
     "DataTables": "*",
-    "ember-cli-list-view": "ahacking/ember-list-view-component",
+    "ember-cli-list-view": "ahacking/ember-list-view-component#0.0.6-alpha.1",
     "zynga-scroller": "https://raw.github.com/zynga/scroller/master/src/Scroller.js",
     "zynga-scroller-animate": "https://raw.github.com/zynga/scroller/master/src/Animate.js"
   },
