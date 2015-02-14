@@ -1,6 +1,4 @@
 Index
-{{#ember-list items=model height=200 rowHeight=20}}
-        {{name}}
-      {{/ember-list}}
-
+{{input value=filterVal}}
+{{view 'index/listview' content=filterList}}
 {{outlet}}
