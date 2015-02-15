@@ -9,6 +9,6 @@ export default Ember.View.extend({
         this.$('#offerTable')
             .DataTable({"paging":false,
                        "info":false,
-                       "filter":false});
+                       "filter":false});                       
     }
 });

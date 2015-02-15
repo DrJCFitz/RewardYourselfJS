@@ -20,6 +20,8 @@ app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
 app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
 app.import('bower_components/DataTables/media/js/jquery.dataTables.min.js');
 app.import('bower_components/DataTables/media/css/jquery.dataTables.min.css');
+app.import('bower_components/datatables-bootstrap3-plugin/media/js/datatables-bootstrap3.min.js');
+app.import('bower_components/datatables-bootstrap3-plugin/media/css/datatables-bootstrap3.min.css');
 app.import("bower_components/zynga-scroller/index.js");
 app.import("bower_components/zynga-scroller-animate/index.js");
 module.exports = app.toTree();

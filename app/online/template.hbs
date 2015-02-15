@@ -1,8 +1,7 @@
 {{!-- {{view 'stores/online'}} --}}
 Online
-{{view 'index/listview' content=model}}
-{{!-- {{#each store in model}}
-<li>{{store.name}}</li>
-{{/each}} --}}
-
+<div class="col-md-4">
+{{input value=filterVal class='form-control' placeholder="Search..."}}
+{{view 'index/listview' content=filterList}}
+</div>
 {{outlet}}
