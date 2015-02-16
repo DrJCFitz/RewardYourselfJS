@@ -14,5 +14,7 @@
 /coverage/*
 /libpeerconnection.log
 /config/portals.js
+/config/portal-keys.js
 npm-debug.log
 testem.log
+.project

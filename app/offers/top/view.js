@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.View.extend({
-    templateName: 'offers/offers',
+    templateName: 'offers/top',
     tagName: 'div',
     classNames: ['offerList'],
     didInsertElement: function(){

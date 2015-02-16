@@ -2,7 +2,11 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'reward-yourself',
+    contentSecurityPolicy: {
+        'connect-src': 'localhost:3000',
+        'style-src': "'self' 'unsafe-inline'"
+    },
+    modulePrefix: 'RewardYourself',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',

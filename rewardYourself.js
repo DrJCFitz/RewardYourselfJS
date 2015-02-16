@@ -21,15 +21,20 @@ db.open(function (error, client) {
       collection = db.collection("merchant");
 });
     
-app.get('/', function(req, res){
+/*app.get('/', function(req, res){
     res.sendFile(__dirname+'/dist/index.html');
     //res.sendFile(__dirname+'/views/rwys.html');
-});
+});*/
 
 app.get('/stores', function(req, res) {
     if ( Object.keys(req.query).length === 0 ) {
         collection.aggregate([{$sort:{key:-1}},{$group:{_id:'$key','name':{$addToSet:'$name'}}}],function(err, foundMerchant){
-            res.send({stores:foundMerchant});
+            res.setHeader('Access-Control-Allow-Origin','http://localhost:4200');               res.send({stores:foundMerchant});
+        });
+    } else if (Object.keys(req.query).length === 1 && 
+               req.query.top !== undefined) {
+        collection.aggregate([{$match:{type:'online',"reward.limit":'',"reward.rate":{$ne:"$"}}},{$group:{_id:"$key", name:{$addToSet:"$name"}, equivalentPercentage:{ $max: { $multiply:["$reward.equivalentPercentage", "$reward.value"]}}}},{$sort:{"equivalentPercentage":-1}},{$limit:20}],function(err, topMerchants){
+            res.setHeader('Access-Control-Allow-Origin','http://localhost:4200');               res.send({stores:topMerchants});
         });
     } else {
         var queryParams = req.query;
@@ -38,6 +43,7 @@ app.get('/stores', function(req, res) {
             queryParams.enabled = (Boolean)(queryParams.enabled);
         }
         collection.find(req.query).toArray(function(err, selected){
+            res.setHeader('Access-Control-Allow-Origin','http://localhost:4200');
             res.json({stores:selected});
         });
     }

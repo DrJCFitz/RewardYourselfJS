@@ -5,11 +5,5 @@ export default Ember.View.extend({
     tagName: 'form',
     attributeBindings: ['role'],
     role: "form",
-    classNames: ['storeList'],
-    didInsertElement: function(){
-        this._super();
-        this.$('#searchStoresList')
-            .btsListFilter('#searchStoresInput', 
-                           {itemChild: 'span'});
-    }
+    classNames: ['storeList']
 });

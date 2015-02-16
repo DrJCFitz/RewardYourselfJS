@@ -1,0 +1,14 @@
+<h2>Top offers:</h2>
+<table id="topOfferTable" class="display" width="100%">
+<thead>
+    <tr>
+        <th>Store</th>
+        <th>Equivalent Percentage</th>
+    </tr>
+</thead>
+<tbody>
+{{#each offer in model}}
+    {{view 'offers/top/offer' contentBinding='offer'}}
+{{/each}}
+</tbody>
+</table>

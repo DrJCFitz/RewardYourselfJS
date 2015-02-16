@@ -1,9 +1,9 @@
 {
-  "name": "reward-yourself",
+  "name": "RewardYourself",
   "dependencies": {
     "handlebars": "2.0.0",
     "jquery": "^1.11.1",
-    "ember": "1.9.0",
+    "ember": "1.9.1",
     "ember-data": "1.0.0-beta.12",
     "ember-resolver": "~0.1.11",
     "loader.js": "ember-cli/loader.js#1.0.1",
@@ -13,11 +13,14 @@
     "ember-qunit": "0.1.8",
     "ember-qunit-notifications": "0.0.5",
     "qunit": "~1.17.1",
-    "ember-cli-list-view": ">=0.0.3",
-    "bootstrap": "~3.3.2",
-    "ember-model": "~0.0.14"
+    "bootstrap": "*",
+    "ember-cli-list-view": "ahacking/ember-list-view-component#0.0.6-alpha.1",
+    "zynga-scroller": "https://raw.github.com/zynga/scroller/master/src/Scroller.js",
+    "zynga-scroller-animate": "https://raw.github.com/zynga/scroller/master/src/Animate.js",
+    "datatables-bootstrap3-plugin": "~0.3.0"
   },
   "resolutions": {
-    "handlebars": ">= 2.0.0 < 3.0.0"
+    "handlebars": "2.0.0",
+    "ember": "1.9.1"
   }
 }
