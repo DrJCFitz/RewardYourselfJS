@@ -12,6 +12,7 @@ Router.map(function() {
   this.resource('giftcard', function(){
     this.route('offer', {path:'/:key'});
   });
+  this.route("about");
 });
 
 export default Router;

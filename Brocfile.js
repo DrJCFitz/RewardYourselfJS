@@ -1,6 +1,7 @@
 /* global require, module */
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var pickFiles = require('broccoli-static-compiler');
 
 var app = new EmberApp();
 
@@ -19,10 +20,20 @@ var app = new EmberApp();
 app.import('bower_components/ember-cli-list-view/list-view.js');
 app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
 app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
+var bootstrapIcons = pickFiles('bower_components/bootstrap', {
+	srcDir: '/fonts',
+	files: ['**/*.woff', '**/*.woff2', '**/*.ttf'],
+	destDir: 'fonts'
+});
 app.import('bower_components/DataTables/media/js/jquery.dataTables.min.js');
-app.import('bower_components/DataTables/media/css/jquery.dataTables.min.css');
-app.import('bower_components/datatables-bootstrap3-plugin/media/js/datatables-bootstrap3.min.js');
-app.import('bower_components/datatables-bootstrap3-plugin/media/css/datatables-bootstrap3.min.css');
+//app.import('bower_components/DataTables/media/css/jquery.dataTables.min.css');
+app.import('bower_components/datatables-bootstrap3/BS3/assets/js/datatables.js');
+app.import('bower_components/datatables-bootstrap3/BS3/assets/css/datatables.css');
+var bootstrapDT = pickFiles('bower_components/datatables-bootstrap3', {
+	srcDir: '/BS3/assets/images',
+	files: ['**/*'],
+	destDir: 'images'
+});
 app.import("bower_components/zynga-scroller/index.js");
 app.import("bower_components/zynga-scroller-animate/index.js");
-module.exports = app.toTree();
+module.exports = app.toTree(bootstrapIcons,bootstrapDT);

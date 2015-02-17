@@ -1,14 +1,17 @@
 import Ember from 'ember';
+import $ from 'jquery';
 
 export default Ember.View.extend({
     templateName: 'offers/top',
     tagName: 'div',
-    classNames: ['offerList'],
     didInsertElement: function(){
         this._super();
-        this.$('#offerTable')
-            .DataTable({"paging":false,
+        $('#topOfferTable')
+            .DataTable({"paging":true,
+            			"lengthMenu": [[5, 10, -1], [5, 10, "All"]],
+            			"displayLength": 5,
                        "info":false,
-                       "filter":false});                       
+                       "filter":false,
+                       "order":[[1,"desc"],[0,"asc"]]});                       
     }
 });

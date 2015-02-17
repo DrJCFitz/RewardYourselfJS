@@ -17,7 +17,8 @@
     "ember-cli-list-view": "ahacking/ember-list-view-component#0.0.6-alpha.1",
     "zynga-scroller": "https://raw.github.com/zynga/scroller/master/src/Scroller.js",
     "zynga-scroller-animate": "https://raw.github.com/zynga/scroller/master/src/Animate.js",
-    "datatables-bootstrap3-plugin": "~0.3.0"
+    "DataTables": "~1.10.5",
+    "datatables-bootstrap3": "*"
   },
   "resolutions": {
     "handlebars": "2.0.0",
