@@ -8,7 +8,11 @@ var Store = DS.Model.extend({
   }),
   portalName: DS.attr('string'),
   portalKey: DS.attr('string'),
+  key: DS.attr('string'),
+  enabled: DS.attr('boolean'),
+  type: DS.attr('string'),
   link: DS.attr('string'),
+  dateCreated: DS.attr('date'),
   equivalentPercentage: DS.attr('number'),
   reward: DS.belongsTo('reward', {embedded: 'always'})
 });

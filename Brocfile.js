@@ -2,6 +2,7 @@
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 var pickFiles = require('broccoli-static-compiler');
+var mergeTrees = require('broccoli-merge-trees');
 
 var app = new EmberApp();
 
@@ -18,6 +19,12 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 app.import('bower_components/ember-cli-list-view/list-view.js');
+app.import('bower_components/font-awesome/css/font-awesome.css');
+var fontAwesomeIcons = pickFiles('bower_components/font-awesome', {
+	srcDir: '/fonts',
+	files: ['**/*.woff', '**/*.woff2', '**/*.ttf','**/*.eot','**/*.svg'],
+	destDir: 'fonts'
+});
 app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
 app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
 var bootstrapIcons = pickFiles('bower_components/bootstrap', {
@@ -36,4 +43,6 @@ var bootstrapDT = pickFiles('bower_components/datatables-bootstrap3', {
 });
 app.import("bower_components/zynga-scroller/index.js");
 app.import("bower_components/zynga-scroller-animate/index.js");
-module.exports = app.toTree(bootstrapIcons,bootstrapDT);
+var appTree = app.toTree();  // this takes care of all the app.imports
+// ... and combine with the picked files
+module.exports = mergeTrees([appTree,fontAwesomeIcons,bootstrapIcons,bootstrapDT]);

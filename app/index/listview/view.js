@@ -3,10 +3,10 @@ import $ from 'jquery';
 
 export default Ember.ListView.extend({
     classNames: ['list-group'],
-    height: 440,
+    height: 420,
     //width: 200,
     //elementWidth: 200,
-    rowHeight: 44,
+    rowHeight: 42,
     itemViewClass: Ember.ListItemView.extend({
         template: Ember.Handlebars.compile('{{singleName}}'),
         tagName: 'a',
