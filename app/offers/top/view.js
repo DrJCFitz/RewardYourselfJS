@@ -6,7 +6,7 @@ export default Ember.View.extend({
     tagName: 'div',
     didInsertElement: function(){
         this._super();
-        $('#topOfferTable')
+        $('.top-table')
             .DataTable({"paging":true,
             			"lengthMenu": [[5, 10, -1], [5, 10, "All"]],
             			"displayLength": 5,

@@ -3,9 +3,11 @@ import Ember from 'ember';
 
 var Store = DS.Model.extend({
   name: DS.attr('string'),
-  singleName: Ember.computed('name',function(){
-      return this.get('name').split(',')[0];
-  }),
+  count: DS.attr('number'),
+  singleName: Ember.computed(function(){
+	  var splitName = this.get('name').split(',');
+      return splitName[0] + " (" + this.get('count') + ")";
+  }).property('name','count'),
   portalName: DS.attr('string'),
   portalKey: DS.attr('string'),
   key: DS.attr('string'),
