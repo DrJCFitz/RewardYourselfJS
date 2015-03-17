@@ -1,5 +1,6 @@
 var mongodb = require('mongodb');
 var async = require('async');
+var crontab = require('node-crontab');
 var portals = require('./config/portals.js');
 var crontest = require('./rwysCron.js');
 
@@ -15,37 +16,40 @@ db.open(function (error, client) {
       collection = db.collection("merchant");
 });
 
-async.eachSeries(portals,
-	function(portal, done) {
-		crontest(portal,
-			function(err, data){
-				if (err) { console.log(err); }
-				
-			    var merchants = JSON.parse(data);
-			    console.log(merchants.length + ' merchants returned');
-			    console.log('portalKey:'+portal.portal.key+', type:'+portal.portal.type);
-			    
-			    if (merchants.length > 0) {
-			        collection.bulkWrite([
-			            {updateMany: {
-			            	filter: {portalKey: portal.portal.key, type: portal.portal.type}, 
-			            	update:{ $set: {enabled:false} } },
-			            	upsert: false 
-			            },
-			    		{insertMany: merchants  } ],
-			    		{ordered:true, w:1},
-		    			function(err, r) {
-		    				if (err) { console.log('there was an error'); }
-		    				done();
-		    			}
-			        );
-			    } else {
-			    	done();
-			    }
-			});
-	}, function(err) {
-		console.log('end callback');
-		db.close();
-		process.exit();
-	}
-);
+// cron: <Minute 1-60> <Hour 0-23> <Day_of_the_Month 1-31> <Month_of_the_Year 1-12> <Day_of_the_Week 1-7>
+var jobId = crontab.scheduleJob("* 2 * * *", function(portals){
+	async.eachSeries(portals,
+			function(portal, done) {
+				crontest(portal,
+					function(err, data){
+						if (err) { console.log(err); }
+						
+					    var merchants = JSON.parse(data);
+					    console.log(merchants.length + ' merchants returned');
+					    console.log('portalKey:'+portal.portal.key+', type:'+portal.portal.type);
+					    
+					    if (merchants.length > 0) {
+					        collection.bulkWrite([
+					            {updateMany: {
+					            	filter: {portalKey: portal.portal.key, type: portal.portal.type}, 
+					            	update:{ $set: {enabled:false} } },
+					            	upsert: false 
+					            },
+					    		{insertMany: merchants  } ],
+					    		{ordered:true, w:1},
+				    			function(err, r) {
+				    				if (err) { console.log('there was an error'); }
+				    				done();
+				    			}
+					        );
+					    } else {
+					    	done();
+					    }
+					});
+			}, function(err) {
+				console.log('end callback');
+//				db.close();
+//				process.exit();
+			}
+		); 
+}, [portals]);
