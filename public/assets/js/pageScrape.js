@@ -28,16 +28,20 @@
             var unit, rate, limit;
             var matchReward = rawReward.match(new RegExp(self.variables.merchant.reward.regex));
             debug( matchReward );
-            limit = ( matchReward[self.variables.merchant.reward.limitIndex] !== undefined ) ? matchReward[self.variables.merchant.reward.limitIndex] : '';
-            if ( matchReward[self.variables.merchant.reward.dollarIndex] !== undefined ) {
-                unit = matchReward[self.variables.merchant.reward.dollarIndex];
-                rate = matchReward[self.variables.merchant.reward.dollarIndex];
+            if ( matchReward !== null ) {
+	            limit = ( matchReward[self.variables.merchant.reward.limitIndex] !== undefined ) ? matchReward[self.variables.merchant.reward.limitIndex] : '';
+	            if ( matchReward[self.variables.merchant.reward.dollarIndex] !== undefined ) {
+	                unit = matchReward[self.variables.merchant.reward.dollarIndex];
+	                rate = matchReward[self.variables.merchant.reward.dollarIndex];
+	            } else {
+	                unit = (matchReward[self.variables.merchant.reward.unitIndex] !== undefined) ? matchReward[self.variables.merchant.reward.unitIndex] : ''
+	                rate = (matchReward[self.variables.merchant.reward.rateIndex] !== undefined) ? matchReward[self.variables.merchant.reward.rateIndex] : ''
+	            }
+	            value = (matchReward[self.variables.merchant.reward.valueIndex] !== undefined) ? parseFloat(matchReward[self.variables.merchant.reward.valueIndex]) : 0.0;
+	            return new reward(value, unit.trim(), rate.trim(), limit.toLowerCase().trim());
             } else {
-                unit = (matchReward[self.variables.merchant.reward.unitIndex] !== undefined) ? matchReward[self.variables.merchant.reward.unitIndex] : ''
-                rate = (matchReward[self.variables.merchant.reward.rateIndex] !== undefined) ? matchReward[self.variables.merchant.reward.rateIndex] : ''
+            	return matchReward;
             }
-            value = (matchReward[self.variables.merchant.reward.valueIndex] !== undefined) ? parseFloat(matchReward[self.variables.merchant.reward.valueIndex]) : 0.0;
-            return new reward(value, unit.trim(), rate.trim(), limit.toLowerCase().trim());
         }
         
         function process() {
@@ -45,13 +49,18 @@
             $.each($element, function (index, merchantRoot) {
                 debug(index);
                 var name = parseName($(merchantRoot).find(self.variables.merchant.name.element).text());
-                merchants.push( 
-                    new merchant( name,
-                        merchantNameToKey( name ),
-                        $(merchantRoot).find(self.variables.merchant.link.element).attr('href'),
-                        parseReward( $(merchantRoot).find(self.variables.merchant.reward.element).text() ) 
-                    )
-                );
+                var key = merchantNameToKey( name );
+                var link = $(merchantRoot).find(self.variables.merchant.link.element).attr('href');
+                var reward = parseReward( $(merchantRoot).find(self.variables.merchant.reward.element).text() );
+                if ( reward !== null ) {
+	                merchants.push( 
+	                    new merchant( name,
+	                        key,
+	                        link,
+	                        reward 
+	                    )
+	                );
+                }
             });
             return JSON.stringify( merchants );
         }
