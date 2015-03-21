@@ -72,13 +72,14 @@
         function merchant( name, key, link, reward ) {
             this.name = name;
             this.key = key;
-            this.link = link;
+            this.link = self.variables.portal.baseUrl + link.split(new RegExp('(\\.\\.)?(.+)'))[2];
             this.reward = reward;
             this.enabled = true;
             this.portalName = self.variables.portal.name;
             this.portalKey = self.variables.portal.key;
             this.type = self.options.portal.type;
             this.dateCreated = new Date();
+
             return this;
         }
         
