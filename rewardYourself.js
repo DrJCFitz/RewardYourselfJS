@@ -28,12 +28,12 @@ db.open(function (error, client) {
 
 app.get('/stores', function(req, res) {
     if ( Object.keys(req.query).length === 1 && req.query.type !== undefined ) {
-    	collection.aggregate([{$match:{type: req.query.type}},{$sort:{key:-1}},{$group:{_id:'$key','name':{$addToSet:'$name'},count: { $sum: 1 }}}],function(err, foundMerchant){
+    	collection.aggregate([{$match:{type: req.query.type, enabled: true}},{$sort:{key:-1}},{$group:{_id:'$key','name':{$addToSet:'$name'},count: { $sum: 1 }}}],function(err, foundMerchant){
             res.setHeader('Access-Control-Allow-Origin','http://localhost:4200');               res.send({stores:foundMerchant});
         });
     } else if (Object.keys(req.query).length === 2 && 
                (req.query.top !== undefined && req.query.type !== undefined)) {
-        collection.aggregate([{$match:{type:req.query.type,"reward.limit":{$eq:""},"reward.rate":{$ne:"$"}}},{$match:{"reward.rate":{$ne:""}}},{$group:{_id:"$key", name:{$addToSet:"$name"}, equivalentPercentage:{ $max: { $multiply:["$reward.equivalentPercentage", "$reward.value"]}}}},{$sort:{"equivalentPercentage":-1}},{$limit:20}],function(err, topMerchants){
+        collection.aggregate([{$match:{type: req.query.type,"reward.limit":{$eq:""},"reward.rate":{$ne:"$"}, enabled: true }},{$match:{"reward.rate":{$ne:""}}},{$group:{_id:"$key", name:{$addToSet:"$name"}, equivalentPercentage:{ $max: { $multiply:["$reward.equivalentPercentage", "$reward.value"]}}}},{$sort:{"equivalentPercentage":-1}},{$limit:20}],function(err, topMerchants){
             res.setHeader('Access-Control-Allow-Origin','http://localhost:4200');               res.send({stores:topMerchants});
         });
     } else {
