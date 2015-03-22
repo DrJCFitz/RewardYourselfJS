@@ -18,9 +18,8 @@ export default Ember.ListView.extend({
           $('a.ember-list-item-view.active').removeClass('active');
           // add the active class to the current item
           this.$().addClass('active');
-          console.log(JSON.stringify(this.get('context')));
           // transition to the online offer route with the appropriate key value
-          this.get('controller').transitionToRoute('stores.offers', 'online', key);
+          this.get('controller').transitionToRoute('stores.offers', this.get('context.type'), key);
         }
     })
 });
