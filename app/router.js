@@ -6,11 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.resource('online', function(){
-    this.route('offer', {path:'/:key'});
-  });
-  this.resource('giftcard', function(){
-    this.route('offer', {path:'/:key'});
+  this.resource('stores', {path:'/:type'}, function(){
+    this.route('offers', {path:'/:key'});
   });
   this.route("about");
 });
