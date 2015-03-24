@@ -8,7 +8,7 @@ export default Ember.ListView.extend({
     //elementWidth: 200,
     rowHeight: 42,
     itemViewClass: Ember.ListItemView.extend({
-        template: Ember.Handlebars.compile('{{singleName}}'),
+        template: Ember.Handlebars.compile('{{singleNameWithCount}}'),
         tagName: 'a',
         classNames: ['list-group-item'],
         click: function(){

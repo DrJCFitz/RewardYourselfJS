@@ -1,0 +1,16 @@
+<div class="col-xs-12 col-sm-12 col-md-6">
+	<h4 style="text-align:center">{{heading}}</h4>
+	<table class="top-table display table table-striped table-bordered" width="100%">
+		<thead>
+		    <tr>
+		       <th>Store</th>
+	           <th>Equivalent Percentage</th>
+		    </tr>
+		</thead>
+		<tbody>
+			{{#each offer in items}}
+				{{offer-list offer=offer action='linkClicked'}}
+			{{/each}}
+		</tbody>
+	</table>
+</div>

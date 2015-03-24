@@ -4,10 +4,13 @@ import Ember from 'ember';
 var Store = DS.Model.extend({
   name: DS.attr('string'),
   count: DS.attr('number'),
-  singleName: Ember.computed(function(){
+  singleNameNoCount: Ember.computed(function(){
 	  var splitName = this.get('name').split(',');
-      return splitName[0] + " (" + this.get('count') + ")";
-  }).property('name','count'),
+      return splitName[0];
+  }).property('name'),
+  singleNameWithCount: Ember.computed(function(){
+	  return this.get('singleNameNoCount') + " (" + (this.get('count')+1) + ")";
+  }).property('singleNameNoCount','count'),
   portalName: DS.attr('string'),
   portalKey: DS.attr('string'),
   key: DS.attr('string'),
@@ -16,6 +19,9 @@ var Store = DS.Model.extend({
   link: DS.attr('string'),
   dateCreated: DS.attr('date'),
   equivalentPercentage: DS.attr('number'),
+  formattedPercentage: Ember.computed('equivalentPercentage', function(){
+		return this.get('equivalentPercentage').toFixed(2) + '%';
+  }),
   reward: DS.belongsTo('reward', {embedded: 'always'})
 });
 
