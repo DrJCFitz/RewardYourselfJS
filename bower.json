@@ -18,7 +18,8 @@
     "zynga-scroller": "https://raw.github.com/zynga/scroller/master/src/Scroller.js",
     "zynga-scroller-animate": "https://raw.github.com/zynga/scroller/master/src/Animate.js",
     "DataTables": "~1.10.5",
-    "datatables-bootstrap3": "*"
+    "datatables-bootstrap3": "*",
+    "font-awesome": "~4.3.0"
   },
   "resolutions": {
     "handlebars": "2.0.0",
