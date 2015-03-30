@@ -7,7 +7,7 @@ export default Ember.ArrayController.extend({
         if (!filter) { return this; }
 
         return this.filter(function(item) {
-            return item.get('singleName').indexOf(filter) !== -1;
+            return item.get('singleNameWithCount').indexOf(filter) !== -1;
         });
         
     }.property('filterVal')
