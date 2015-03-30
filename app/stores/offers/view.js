@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.View.extend({
-    templateName: 'offers/offers',
+    templateName: 'stores/offers',
     tagName: 'div',
     classNames: ['col-xs-12 col-md-6'],
     didInsertElement: function(){
