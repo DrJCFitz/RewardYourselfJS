@@ -25,7 +25,8 @@ app.get('/stores', function(req, res) {
         });
     } else if (Object.keys(req.query).length === 2 && 
                (req.query.top !== undefined && req.query.type !== undefined)) {
-        collection.aggregate([{$match:{type: req.query.type,"reward.limit":{$eq:""},"reward.rate":{$ne:"$"}, enabled: true }},{$match:{"reward.rate":{$ne:""}}},{$group:{_id:"$key", name:{$addToSet:"$name"}, type:{$addToSet:'$type'}, equivalentPercentage:{ $max: { $multiply:["$reward.equivalentPercentage", "$reward.value"]}}}},{$sort:{"equivalentPercentage":-1}},{$limit:20}],function(err, topMerchants){
+//	console.log('top requested');
+        collection.aggregate([{$match:{type: req.query.type, "reward.rate":{"$ne":"$"}, enabled: true }},{$match:{"reward.rate":{"$ne":""}}},{$group:{_id:"$key", name:{$addToSet:"$name"}, type:{$addToSet:'$type'}, equivalentPercentage:{ $max: { $multiply:["$reward.equivalentPercentage", "$reward.value"]}}}},{$sort:{"equivalentPercentage":-1}},{$limit:20}],function(err, topMerchants){
             res.setHeader('Access-Control-Allow-Origin','*');
             res.send({stores:topMerchants});
         });
