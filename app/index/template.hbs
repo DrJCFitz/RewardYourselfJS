@@ -11,5 +11,9 @@
 	<p>
   </div>
 </div>
-{{view 'offers/top'}}
+<div class="featurette">
+	<h2 class="featurette-heading" style="text-align:center">Top Offers:</h2>
+	{{top-deals class="col-xs-12 col-sm-12 col-md-6" heading="Online" items=model.online action="linkClicked" }}
+	{{top-deals class="col-xs-12 col-sm-12 col-md-6" heading="Gift Card" items=model.giftcard action="linkClicked"}}
+</div>
 {{outlet}}
