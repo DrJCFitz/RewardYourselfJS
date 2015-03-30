@@ -3,7 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     contentSecurityPolicy: {
-        'connect-src': "'self' localhost:3000",
+        'connect-src': "'self' ec2-52-4-142-226.compute-1.amazonaws.com:3000 localhost:3000",
         'style-src': "'self' 'unsafe-inline'"
     },
     modulePrefix: 'RewardYourself',
