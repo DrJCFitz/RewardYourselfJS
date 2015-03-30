@@ -1,35 +1,5 @@
 <div class="featurette">
 	<h2 class="featurette-heading" style="text-align:center">Top Offers:</h2>
-	<div class="col-xs-12 col-sm-12 col-md-6">
-		<h4 style="text-align:center">Online</h4>
-		<table class="top-table display table table-striped table-bordered" width="100%">
-			<thead>
-			    <tr>
-			        <th>Store</th>
-			        <th>Equivalent Percentage</th>
-			    </tr>
-			</thead>
-			<tbody>
-			{{#each offer in model.online}}
-			    {{view 'offers/top/offer' contentBinding='offer'}}
-			{{/each}}
-			</tbody>
-		</table>
-	</div>
-	<div class="col-xs-12 col-sm-12 col-md-6">
-		<h4 style="text-align:center">GiftCard</h4>
-		<table class="top-table display table table-striped table-bordered" width="100%">
-			<thead>
-			    <tr>
-			        <th>Store</th>
-			        <th>Equivalent Percentage</th>
-			    </tr>
-			</thead>
-			<tbody>
-			{{#each offer in model.giftcard}}
-			    {{view 'offers/top/offer' contentBinding='offer'}}
-			{{/each}}
-			</tbody>
-		</table>
-	</div>
+	{{top-deals heading="Online" items=model.online}}
+	{{top-deals heading="Gift Card" items=model.giftcard}}
 </div>
